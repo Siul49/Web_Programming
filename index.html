@@ -1,28 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset= "UTF-8">
-    <title>경수의 웹 프로그래밍 공부!</title>
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
+<body class="bg-blue-50 align-items-center justify- align-center h-screen">
+    <header>
+        <nav class="items-center justify-content-center bg-white p-6 shadow-md">
+            <div class="flex justify-between items-center">
+                <h1 class="text-4xl font-bold text-black">갱수의 놀이터</h1>
+            </div>
+            <div class="flex justify-content-between align-items-center flex-shrink-0 text-black mr-6">
+                <a class="text-black no-underline hover:no-underline font-bold text-lg" href="#">주차별 실습</a>
+                <a class="text-black no-underline hover:no-underline font-bold text-lg" href="#">타임테이블 제작실</a>
+                <a class="text-black no-underline hover:no-underline font-bold text-lg" href="#">팀원 소개</a>
+            </div>
+        </nav>
+    </header>
 
-<body class="d-flex align-content-center justify-content-center" style="background-color: #d6e5ff; min-height: 100vh;">
+    <main class="position-relative flex flex-nowrap container mx-auto px-4 py-8 text-center ">
+        <div class="position-relative bg-white shadow-md rounded-lg p-6 mb-8">
+            <h1 class="position-absolute text-2xl font-bold mb-4">수업 실습 및 개인 예제 코드</h1>
 
-<div class = "card" style="width: 50rem;">
-    <div class="card-body">
-    <div class="card-header">수업 실습 및 개인 예제 코드</div>
-    <h1 class="card-text">ch1</h1>
-    <p><a href="ch1/hello, world.html"><button class = "card-text">hello, World</button></a></p>
+            <div class="space-y-6">
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch1</h2>
+                    <a href="ch1/hello, world.html" class="inline-block">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            hello, World
+                        </button>
+                    </a>
+                </section>
 
-    <h1 class = "card-text">ch2</h1>
-    <p><a href="ch2/bootstrap_example/index.html"><button class = "card-text">Login made with bootstrap</button></a></p>
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch2</h2>
+                    <a href="ch2/bootstrap_login.html" class="inline-block">
+                        <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+                            Login made with bootstrap
+                        </button>
+                    </a>
+                </section>
 
-    <h1 class = "card-text">ch3</h1>
-    <p><a href="ch3/index.html"><button class = "card-text">html</button></a></p>
-    </div>
-</div>
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch3</h2>
+                    <a href="ch3/index.html" class="inline-block">
+                        <button class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                            html
+                        </button>
+                    </a>
+                </section>
 
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch4</h2>
+                    <a href="ch4/gogodan.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            gogodan
+                        </button>
+                    </a>
+                </section>
+
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch5</h2>
+                    <a href="ch5/ch3_1.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            ch3_1
+                        </button>
+                    </a>
+                    <a href="ch5/ch3_2.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            ch3_2
+                        </button>
+                    </a>
+                    <a href="ch5/ch3_3.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            ch3_3
+                        </button>
+                    </a>
+                    <a href="ch5/ch4_1.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            ch4_1
+                        </button>
+                    </a>
+                    <a href="ch5/ch4_2.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            ch4_2
+                        </button>
+                    </a>
+                </section>
+
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch5</h2>
+                    <a href="ch6/server/book.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            book
+                        </button>
+                    </a>
+                </section>
+
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch6</h2>
+                    <a href="ch3/index.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            css
+                        </button>
+                    </a>
+                </section>
+
+                <section class="position-absolute">
+                    <h2 class="text-xl font-semibold mb-2">ch7</h2>
+                    <a href="ch3/index.html" class="inline-block">
+                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                            css
+                        </button>
+                    </a>
+                </section>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
-
