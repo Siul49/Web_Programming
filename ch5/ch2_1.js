@@ -8,10 +8,10 @@ function account(userId,userpw){
     var savedName = '김경수';
     var savedPW = '1111';
 
-    userpw = userpw || '1111';
+    userpw = userPW || '1111';
 
-    if(userId == savedName){
-        if(userpw == savedPW){
+    if(userId === savedName){
+        if(userpw === savedPW){
             console.log('hi ' + userId);
         }
     }

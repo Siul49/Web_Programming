@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>To-Do 리스트</title>
+</head>
+
+<body>
+  <h1>할 일 리스트</h1>
+  <div class="todo">
+    <input class="taskInput">
+    <button class="addTaskButton">추가</button>
+    <ul class="taskList"></ul>
+  </div>
+  <div class="todo">
+    <input class="taskInput">
+    <button class="addTaskButton">추가</button>
+    <ul class="taskList"></ul>
+  </div>
+  <script>
+    document.querySelectorAll(".todo").forEach(todoSection => {
+      const taskInput = todoSection.querySelector(".taskInput");
+      const addTaskButton = todoSection.querySelector(".addTaskButton");
+      const taskList = todoSection.querySelector(".taskList");
+
+      addTaskButton.addEventListener("click", () => {
+        const taskText = taskInput.value.trim();
+        if (taskText !== "") {
+          const listItem = document.createElement("li");
+          listItem.textContent = taskText;
+
+          const deleteButton = document.createElement("button");
+          deleteButton.textContent = "삭제";
+          deleteButton.addEventListener("click", () => {
+            taskList.removeChild(listItem);
+          });
+
+          listItem.appendChild(deleteButton);
+          taskList.appendChild(listItem);
+          taskInput.value = "";
+        }
+      });
+    });
+
+  </script>
+</body>
+</html>

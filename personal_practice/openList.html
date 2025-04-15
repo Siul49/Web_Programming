@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>타이틀</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+  <button id="toggleBtn" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+    목차 보기
+  </button>
+
+  <div id="content" class="overflow-hidden transition-all duration-500 ease-in-out h-0">
+    <ul class="p-4 bg-gray-100 rounded">
+      <a href="DoItList.html" class = "hover:bh-gray-200">
+      <li>1장. 시작하기</li></a>
+      <a href="DoItList.html" class = "hover:bh-gray-200"><li>2장. HTML</li></a>
+      <a href="DoItList.html" class = "hover:bh-gray-200"><li>3장. CSS</li></a>
+      <a href="DoItList.html" class = "hover:bh-gray-200"> <li>4장. JavaScript</li></a>
+    </ul>
+  </div>
+
+  <script>
+    const toggleBtn = document.getElementById("toggleBtn");
+    const content = document.getElementById("content");
+    let isOpen = false;
+
+    toggleBtn.addEventListener("click", () => {
+      if (isOpen) {
+        content.style.height = "0px"; // 닫기
+      } else {
+        content.style.height = content.scrollHeight + "px"; // 실제 높이만큼 열기
+      }
+      isOpen = !isOpen;
+    });
+  </script>
+</body>
+</html>
