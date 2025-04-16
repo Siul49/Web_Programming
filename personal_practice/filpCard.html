@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드 뒤집기 (확실히 작동)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 필수 CSS 추가 */
+        .flip-card-inner {
+            transform-style: preserve-3d;
+            transition: transform 0.7s;
+        }
+        .flip-card-front, .flip-card-back {
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+        .flip-card-inner.rotate {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+
+<!-- 카드 컨테이너 -->
+<div class="flip-card w-64 h-96 perspective-1000">
+    <div class="flip-card-inner relative w-full h-full">
+        <!-- 앞면 -->
+        <div class="flip-card-front absolute w-full h-full bg-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+            <h3 class="text-xl font-bold mb-4">앞면</h3>
+            <p class="text-gray-600">여기는 카드 앞면</p>
+            <button onclick="flip()" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                뒤집기
+            </button>
+        </div>
+        <!-- 뒷면 -->
+        <div class="flip-card-back absolute w-full h-full bg-indigo-500 text-white rounded-lg shadow-lg p-6 flex flex-col items-center justify-center">
+            <h3 class="text-xl font-bold mb-4">뒷면</h3>
+            <p class="text-indigo-100">여기는 카드 뒷면</p>
+            <button onclick="flip()" class="mt-4 px-4 py-2 bg-white text-indigo-500 rounded hover:bg-indigo-100">
+                다시 뒤집기
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function flip() {
+        document.querySelector('.flip-card-inner').classList.toggle('rotate');
+    }
+</script>
+</body>
+</html>

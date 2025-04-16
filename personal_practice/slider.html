@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>양쪽 슬라이더 시간 선택</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      height: 30px;
+      width: 30px;
+      background: white;
+      border: 3px solid black;
+      border-radius: 8px;
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    input[type=range] {
+      appearance: none;
+      height: 50px;
+      background: transparent;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      pointer-events: none;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 600px;
+      height: 50px;
+      background-color: #d1d5db;
+      border: 4px solid black;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-blue-200">
+
+
+<div class="slider-container mb-6">
+  <input type="range" id="minSlider" min="0" max="24" value="2">
+  <input type="range" id="maxSlider" min="0" max="24" value="23">
+</div>
+
+<p class="text-xl">선택된 시간: <span id="rangeText">2시 ~ 23시</span></p>
+
+<script>
+  const minSlider = document.getElementById("minSlider");
+  const maxSlider = document.getElementById("maxSlider");
+  const rangeText = document.getElementById("rangeText");
+
+  function updateUI() {
+    let min = parseInt(minSlider.value);
+    let max = parseInt(maxSlider.value);
+
+    // 스와핑
+    if (min > max) [min, max] = [max, min];
+
+    rangeText.textContent = `${min}시 ~ ${max}시`;
+  }
+
+  // 🟡 슬라이더를 클릭할 때 우선순위 조정
+  minSlider.addEventListener("mousedown", () => {
+    minSlider.style.zIndex = 3;
+    maxSlider.style.zIndex = 2;
+  });
+
+  maxSlider.addEventListener("mousedown", () => {
+    maxSlider.style.zIndex = 3;
+    minSlider.style.zIndex = 2;
+  });
+
+  minSlider.addEventListener("input", updateUI);
+  maxSlider.addEventListener("input", updateUI);
+  updateUI();
+</script>
+
+</body>
+</html>

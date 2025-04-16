@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>3자리 숫자 조작기</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+
+<h1 class="text-2xl font-bold mb-6">🔢 3자리 숫자 조작기</h1>
+
+<!-- 자리수 조작 UI -->
+<div id="digits" class="flex gap-6 mb-6"></div>
+
+<!-- 결과 표시 -->
+<p class="text-xl">최종 숫자: <span id="result">000</span></p>
+
+<script>
+  const digitsContainer = document.getElementById("digits");
+  const resultDisplay = document.getElementById("result");
+
+  // 초기값: 0, 0, 0
+  let digits = [0, 0, 0];
+
+  function updateUI() {
+    digitsContainer.innerHTML = "";
+
+    digits.forEach((digit, index) => {
+      const wrapper = document.createElement("div");
+      wrapper.className = "flex flex-col items-center";
+
+      // + 버튼
+      const plusBtn = document.createElement("button");
+      plusBtn.innerHTML = "🔼";
+      plusBtn.className = "text-xl";
+      plusBtn.addEventListener("click", () => {
+        digits[index] = (digits[index] + 1) % 10;
+        updateUI();
+      });
+
+      // 숫자 표시
+      const digitDisplay = document.createElement("div");
+      digitDisplay.textContent = digit;
+      digitDisplay.className = "text-3xl font-bold";
+
+      // - 버튼
+      const minusBtn = document.createElement("button");
+      minusBtn.innerHTML = "🔽";
+      minusBtn.className = "text-xl";
+      minusBtn.addEventListener("click", () => {
+        digits[index] = (digits[index] - 1 + 10) % 10;
+        updateUI();
+      });
+
+      wrapper.appendChild(plusBtn);
+      wrapper.appendChild(digitDisplay);
+      wrapper.appendChild(minusBtn);
+      digitsContainer.appendChild(wrapper);
+    });
+
+    // 결과 표시
+    resultDisplay.textContent = digits.join("");
+  }
+
+  // 초기 실행
+  updateUI();
+</script>
+
+</body>
+</html>
