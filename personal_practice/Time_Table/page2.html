@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임테이블 페이지 2</title>
+
+    <!-- CSS 라이브러리 -->
+    <link rel="stylesheet" href="css/style.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script type="module" src="js/timetable_maker/app.js"></script>
+
+    <!--파일 불러오는 라이브러리-->
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+</head>
+
+<!-- 배경 -->
+<body class="
+    bg-[#FEE9CE]
+    w-screen h-screen flex justify-center items-center
+">
+
+
+<!-- 상단 페이지 버튼 -->
+<button
+        onclick="location.reload();"
+        class="
+            absolute
+            w-[10%] h-[10%]
+            left-[20%] top-[7.5%]
+            bg-[#FDE295] text-black
+            flex justify-center
+            py-2
+            border-black rounded-2xl
+            border-[5px]
+            shadow-[2px_2px_0px_black]
+        ">
+    ※타임테이블 페이지
+</button>
+
+
+
+<!-- 전체 컨테이너 (하얀색 박스) -->
+<div class="
+            relative
+            w-[65%] h-[75%]
+            bg-white border-[5px] shadow-[4px_4px_0px_black] rounded-2xl border-black
+            flex justify-center items-center
+            ">
+
+    <!-- 분홍색 박스 -->
+    <button class="
+                absolute
+                w-[40%] h-[60vh]
+                right-[52%]
+                bg-[#FFC5D3] rounded-3xl
+                shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center px-4
+                text-2xl text-center
+                hover:bg-pink-300 transition-all
+                cursor-pointer
+            ">
+
+        드래그 & 드롭, 클릭으로
+        <br> 파일 (.csv) 첨부하기
+
+        <!-- 파일 입력창 -->
+        <input
+                type="file"
+                id="csvInput"
+                accept=".csv"
+                class="
+                    absolute
+                    w-full h-full
+                    cursor-pointer
+                    text-xl
+                    opacity-0
+                "/>
+        <!-- end of 파일 입력창 -->
+
+    </button> <!-- end of 분홍색 박스 -->
+
+    <!-- 노란색 박스 -->
+    <button id="processBtn"
+            class="
+                absolute
+                w-[38%] h-[18vh]
+                right-[8%] top-[9.5%]
+                bg-[#FDE295] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-3xl
+                hover:bg-yellow-300 transition-all
+            ">
+        ※생성하기※
+    </button> <!-- end of 노란색 박스 -->
+
+    <!-- 연한 회색 박스 -->
+    <div class="
+                absolute
+                w-[38%] h-[31vh]
+                right-[8%] top-[37%]
+                bg-[#EDEDED] rounded-3xl p-3
+                shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-3xl
+                hover:bg-gray-200 transition-all
+            ">
+        이름,학번,가능 시간대 1,가능 시간대 2,...,가능 시간대 n까지 작성된 csv 파일을 넣고
+        <br> 로딩되었다는 문구가 뜨면 생성하기 버튼을 눌러주세요
+    </div>
+
+    <!-- 회색 박스 -->
+
+    <button onclick="openModal()" class="
+                absolute
+                w-[20%] h-[6vh]
+                right-[26%] top-[82%]
+                bg-[#D9D9D9] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-xl
+                hover:bg-gray-300 transition-all
+            ">
+        제작자 코멘트
+    </button>
+
+    <!-- 모달 -->
+    <div id="modal" class="hidden fixed inset-0 bg-black/10 z-50 flex items-center justify-center">
+        <div class="relative w-[30%] h-[50%] bg-[#F8D7DF]/95 border-4 border-black rounded-xl shadow-lg pt-12">
+            <!-- 모달 상단 -->
+            <div class="absolute top-0 left-0 w-full h-12 bg-[#F2F2F2]/95 border-b-4 border-black rounded-t-xl flex items-center px-4 justify-between">
+                <p id="modal-mainText" class="text-base">여기는 모달 상단(제목)입니다람쥐!</p>
+                <button onclick="closeModal()" class="p-1">
+                    <img src="../../../web_programming_project/resource/close.svg" alt="닫기 버튼" class="w-5 h-5" />
+                </button>
+            </div>
+
+            <!-- 모달 본문 -->
+            <div class="absolute top-16 left-[5%] right-[5%] w-[90%] h-[70%] bg-[#F2F2F2]/95 rounded-lg p-4">
+                <p id="modal-ContentText" class="text-sm">코드 설명 부분입니다람쥐</p>
+            </div>
+
+            <!-- 버튼 -->
+            <button onclick="lastStep()" class="absolute bottom-5 left-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition last-button">
+                이전으로
+            </button>
+            <button onclick="nextStep()" class="absolute bottom-5 right-[10%] w-[30%] h-[8%] bg-[#F2F2F2]/95 border-4 border-black rounded-md shadow hover:bg-[#D7D7D7] active:scale-95 transition next-button">
+                다음으로
+            </button>
+        </div>
+    </div>
+    <!-- 하늘색 박스 -->
+    <button onclick="history.back()" class="
+                absolute
+                w-[16%] h-[6vh]
+                right-[8%] top-[82%]
+                bg-[#BBDBF4] rounded-3xl
+                drop-shadow-[4px_4px_0px_black]
+                border-4 border-black
+                flex justify-center items-center
+                text-xl
+                hover:bg-blue-300 transition-all
+            ">
+        이전으로
+    </button>
+
+</div> <!-- end of 전체 컨테이너 -->
+
+
+<script src="js/comment_modal.js"></script>
+</body>
+</html>
